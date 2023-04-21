@@ -1,7 +1,7 @@
 '''
 연결 리스트(Linked List)
     저장된 각 데이터가 (데이터)+(다음 데이터의 포인터==주소값)로 이루어진 것으로 한 방향으로만 탐색 가능한 구조
-'''
+''' 
 
 class Node:
     def __init__(self, data, next=None):

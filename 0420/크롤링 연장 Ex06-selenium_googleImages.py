@@ -10,7 +10,7 @@ https://chromedriver.chromium.org/downloads
 
 C:\Program Files\Google\Chrome\Application\chromedriver.exe
 
-구글에서 단어를 검색해 이미지 10장을 저장하는 자동화 프로그램을 만들었다.
+구글에서 단어를 검색해 이미지 10장을 저장하는 자동화 프로그램을 만들었다. 
 
 '''
 
