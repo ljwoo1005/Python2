@@ -1,0 +1,56 @@
+Python 프로그램 실행시키면 PVM이 실행된다.
+
+어떤 프로그램이든 실행시키면 프로세스에서 메모리를 할당해준다.
+간단하게 작업관리자에서 확인 가능
+
+PVM = 파이썬 가상 머신
+좋은 점은 운영체제 상관없이 거의 비슷하게 돌아간다.
+
+PVM의 메모리는 크게
+코드 영역, 데이터 영역, 힙 영역, 스택 영역
+으로 나뉜다.
+
+코드 영역에는 우리가 짠 코드에 대한 정보와 상수값이 들어간다.
+그 상수값 중 하나가 literal(문자열이나 정수, 실수 등)
+
+스택 영역 : 자료 구조에서 데이터가 들어온 순서대로 쌓이고, 자료를 꺼낼 땐 마지막에 쌓인 데이터가 가장 먼저 나간다.
+즉, 들어온 순서와 나가는 순서는 반대인 영역
+예시로 예전에 크롤링을 배울 때 사용했던 코드를 단편만 가져와본다.
+
+keyword = 'cute cat'
+num_images = 10
+output_dir = 'images'
+
+# 이미지 다운로드 함수 호출
+download_images(keyword, num_images, output_dir)
+
+코드를 실행시키면 스택 영역에 keyword, num_images, output_dir이 먼저 쌓이고, 그 다음 download_images(keyword, num_images, output_dir)가 쌓인다.
+그리고 나갈 땐 download_images(keyword, num_images, output_dir)가 먼저 나가고, keyword, num_images, output_dir가 나간다.
+download_images함수에서 keyword, num_images, output_dir를 참조하기 때문에 이들이 먼저 나가버리면 함수 실행이 이루어지지 않기 때문이다.
+
+스택 영역에도 literal이 쌓인다고 볼 수 있겠다. 지역 변수와 매개 변수가 들어간다.
+
+그렇다면 literal이 아닌 클래스, 리스트 등 객체들은 힙 영역에 생긴다.
+힙 영역에는 쌓이는 순서가 존재하는 것은 아니다.
+Garbage Collection(GC, 가비지 컬렉터)가 힙 영역에서 쓰이지 않는 객체들을 알아서 처리해준다.
+
+데이터 영역에는 전역 변수와 정적 변수가 들어가는데, 공유하는 데이터 영역이다.
+예시로 카드를 구성하는 클래스를 만들어보자.
+
+class card:
+    width = 40
+    length = 60
+    def __init__(self, num, shape):
+        self.num = num
+        self.shape = shape
+
+card01 = card(10, 'spade')
+card02 = card(5, 'clover')
+
+클래스를 만든 후, card01과 card02를 card클래스의 객체로 선언했다.
+이들은 숫자와 모양에 대한 인수를 매개변수로 전달하여 어떤 카드인지 정할 수 있다.
+이 때, 클래스 변수로 width와 length(가로와 세로의 길이)를 설정했다.
+card클래스의 객체를 생성하면 자동적으로 width와 length값은 정해져서 나온다.
+여기서 card클래스 객체가 힙 영역에, 클래스 변수가 데이터 영역에 들어있는 것이다.
+
+그리고 실제로 변수는 값을 가지고 있는 것이 아니라 주소값을 가지고 있다.
