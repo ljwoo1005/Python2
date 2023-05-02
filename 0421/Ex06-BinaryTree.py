@@ -11,14 +11,15 @@
   큰 값을 가지도록 구성한다.
 '''
 class TreeNode:
-    def __init__(self, value):
-        self.value = value
-        self.left = None
-        self.right = None
+    def __init__(self, value): # 생성자
+        self.value = value # 노드의 값
+        self.left = None # 왼쪽 서브트리 노드
+        self.right = None # 오른쪽 서브트리 노드
 
+# 이진 트리를 생성하고 순회, 탐색, 삽입, 삭제를 하는 클래스
 class BinaryTree: # 인수로 5를 받음
     def __init__(self, root):
-        self.root = TreeNode(root) # BinaryTree객체.root는 현재 TreeNode의 객체이고 value값이 5인 상황
+        self.root = TreeNode(root) # BinaryTree객체.root는 현재 TreeNode의 객체이고 value값이 5인 상황. 루트 노드라고 하고, 최상단의 노드이다.
         
     # 삽입
 
